@@ -44,7 +44,7 @@ export default function Dashboard() {
   const classes = useStyles()
 
   // Context Store
-  const [allChats] = useContext(CTX)
+  const {allChats, sendChatAction, user} = useContext(CTX)
   const topics =  Object.keys(allChats)
 
   //local state
@@ -94,7 +94,14 @@ export default function Dashboard() {
             onChange={(e)=> changeTextValue(e.target.value)}
 
           />
-          <Button variant='contained' color='primary'>
+          <Button 
+            variant='contained' 
+            color='primary'
+            onClick= {() => {
+              sendChatAction({from: user, msg: textValue, topic:activeTopic})
+              changeTextValue('')
+            }}
+          >
             Send
           </Button>
         </div>
