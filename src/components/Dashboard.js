@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useContext, useState} from 'react'
 import { 
   Paper, 
   Typography, 
@@ -43,6 +43,12 @@ export default function Dashboard() {
 
   const classes = useStyles()
 
+  // Context Store
+  const [allChats] = useContext(CTX)
+  const topics =  Object.keys(allChats)
+
+  //local state
+  const [activeTopic, changeActiveTopic] =  useState(topics[0])
   const [textValue, changeTextValue] = useState('')
 
   return (
@@ -52,14 +58,14 @@ export default function Dashboard() {
           Chat App
         </Typography>
         <Typography variant='h5' component='h5'>
-          Topic Placeholder
+          {activeTopic}
         </Typography>
         <div className={classes.flex}>
           <div className={classes.topicsWindow}>
             <List>
                 {
-                  ['topic'].map(topic => (
-                    <ListItem button> 
+                  topics.map(topic => (
+                    <ListItem button onClick={() => changeActiveTopic(topic)}> 
                       <ListItemText key={topic} primary={topic} />
                     </ListItem>
                   
@@ -70,10 +76,10 @@ export default function Dashboard() {
           <div className={classes.chatWindow}>
             <List>
                 {
-                  [{from: 'user', msg: 'hello'}].map((chat,i) => (
+                  allChats[activeTopic].map((chat,i) => (
                     <div className={classes.flex} key={i}>
                       <Chip label={chat.from} className={classes.chip}/>
-                      <Typography variant='p'>{chat.msg}</Typography>
+                      <Typography variant='body1' gutterBottom>{chat.msg}</Typography>
                     </div>
                   ))
                 }

@@ -10,9 +10,9 @@ const initState = {
     {from: 'matt', msg: 'sa du'},
   ],
   topic2: [
-    {from: 'aaron', msg: 'hello'},
-    {from: 'bob', msg: 'hi'},
-    {from: 'aaron', msg: 'howdy'},
+    {from: 'mac', msg: 'hello'},
+    {from: 'sally', msg: 'wow'},
+    {from: 'martin', msg: 'oops'},
     {from: 'matt', msg: 'sa du'},
   ],
 }
