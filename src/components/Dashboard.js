@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState} from 'react'
 import { 
   Paper, 
   Typography, 
@@ -42,6 +42,8 @@ export default function Dashboard() {
 
   const classes = useStyles()
 
+  const [textValue, changeTextValue] = useState('')
+
   return (
     <div>
       <Paper className={classes.root}>
@@ -79,8 +81,11 @@ export default function Dashboard() {
         </div>
         <div className={classes.flex}>
           <TextField 
-            label='Send Chat'
+            label='Send a message'
             className={classes.chatBox}
+            value={textValue}
+            onChange={(e)=> changeTextValue(e.target.value)}
+
           />
           <Button variant='contained' color='primary'>
             Send
